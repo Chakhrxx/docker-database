@@ -10,5 +10,5 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: "f2tTNQHxVmZZ3Ew+"
       MONGO_INITDB_DATABASE: "docker"
     volumes:
-      - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
+      # - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
       - ./mongo_backup:/data/db
