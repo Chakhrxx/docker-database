@@ -25,26 +25,6 @@ pipeline {
       }
     }
 
-    stage('Build cassandra-container') {
-      steps {
-        sshPublisher(
-        continueOnError: false, 
-        failOnError: true,
-        publishers: [
-            sshPublisherDesc(
-            configName: 'Docker',
-            verbose : true,
-            transfers: [
-                sshTransfer(
-                execCommand : 'cd /home/Chakhree/docker/docker-database/cassandra; docker-compose up -d;'
-                )
-            ]
-            )
-        ]
-        )
-      }
-    }
-
     stage('Build mongo-container') {
       steps {
         sshPublisher(
