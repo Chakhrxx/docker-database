@@ -21,16 +21,20 @@
       ignore_errors: true
     - name: Build cassandra-container
       ansible.builtin.shell: |
-        docker-compose -f /home/Chakhree/docker/docker-database/cassandra/docker-compose.yaml up -d
+        cd /home/Chakhree/docker/docker-database/cassandra/
+        docker-compose up -d
     - name: Build mongo-container
       ansible.builtin.shell: |
-        docker-compose -f /home/Chakhree/docker/docker-database/mongo/docker-compose.yaml up -d
+        cd /home/Chakhree/docker/docker-database/mongo/
+        docker-compose up -d
     - name: Build mysql-container
       ansible.builtin.shell: |
-        docker-compose -f /home/Chakhree/docker/docker-database/mysql/docker-compose.yaml up -d
+        cd /home/Chakhree/docker/docker-database/mysql/
+        docker-compose up -d
     - name: Build postgres-container
       ansible.builtin.shell: |
-        docker-compose -f /home/Chakhree/docker/docker-database/postgres/docker-compose.yaml up -d
+        cd /home/Chakhree/docker/docker-database/postgres/
+        docker-compose up -d
     - name: Check containers have been created
       ansible.builtin.shell: |
-        docker-compose -f /home/Chakhree/docker/docker-database/postgres/docker-compose.yaml up -d
+        docker ps
