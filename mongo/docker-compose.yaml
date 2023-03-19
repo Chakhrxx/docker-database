@@ -6,8 +6,8 @@ services:
     ports:
       - 27017:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: "ec2-user@mongo"
-      MONGO_INITDB_ROOT_PASSWORD: "f2tTNQHxVmZZ3Ew%"
+      MONGO_INITDB_ROOT_USERNAME: "ec2_mongo"
+      MONGO_INITDB_ROOT_PASSWORD: "pWfFSdgbfXZHchDLr6ctPk3d"
       MONGO_INITDB_DATABASE: "docker"
     volumes:
       # - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh

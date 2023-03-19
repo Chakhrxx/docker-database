@@ -11,8 +11,8 @@ services:
       - ./mysql_backup:/var/lib/mysql
     environment:
       MYSQL_DATABASE: "docker"
-      MYSQL_USER: "ec2-user@mysql"
-      MYSQL_PASSWORD: "*hkPydFH+4phTF@j"
+      MYSQL_USER: "ec2_mysql"
+      MYSQL_PASSWORD: "p7yFwLE9rS5Q4UHC27czraTJ"
       MYSQL_ROOT_PASSWORD: "root"
 # # ---------- optional ----------
 

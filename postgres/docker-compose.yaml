@@ -5,8 +5,8 @@ services:
     container_name: postgres-container
     restart: always
     environment:
-      POSTGRES_USER: "ec2-user@postgres"
-      POSTGRES_PASSWORD: "eLuIEr)Vvkuyg3++"
+      POSTGRES_USER: "ec2_postgres"
+      POSTGRES_PASSWORD: "RDUQvgEYYU5ZWHjqzVTSn2Ix"
       POSTGRES_DB: "docker"
     ports:
       - "5432:5432"
