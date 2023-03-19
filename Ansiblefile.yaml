@@ -4,7 +4,33 @@
       copy:
         src: /home/Chakhree/docker/docker-database/
         dest: /home/Chakhree/docker/docker-database/
-    - name: Stop and remove nestjs-pnpm-container
+    - name: Remove Ansiblefie in dockerHost
       ansible.builtin.shell: |
         sudo rm -rf /home/Chakhree/docker/docker-database/Ansiblefile.yaml
       ignore_errors: true
+    - name: Stop and remove containers
+      ansible.builtin.shell: |
+        docker stop cassandra-container 
+        docker rm cassandra-container
+        docker stop mongo-container 
+        docker rm mongo-container
+        docker stop mysql-container 
+        docker rm mysql-container
+        docker stop postgres-container 
+        docker rm postgres-container
+      ignore_errors: true
+    - name: Build cassandra-container
+      ansible.builtin.shell: |
+        docker-compose -f /home/Chakhree/docker/docker-database/cassandra/docker-compose.yaml up -d
+    - name: Build mongo-container
+      ansible.builtin.shell: |
+        docker-compose -f /home/Chakhree/docker/docker-database/mongo/docker-compose.yaml up -d
+    - name: Build mysql-container
+      ansible.builtin.shell: |
+        docker-compose -f /home/Chakhree/docker/docker-database/mysql/docker-compose.yaml up -d
+    - name: Build postgres-container
+      ansible.builtin.shell: |
+        docker-compose -f /home/Chakhree/docker/docker-database/postgres/docker-compose.yaml up -d
+    - name: Check containers have been created
+      ansible.builtin.shell: |
+        docker-compose -f /home/Chakhree/docker/docker-database/postgres/docker-compose.yaml up -d

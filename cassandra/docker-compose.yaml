@@ -10,4 +10,4 @@ services:
       CASSANDRA_USER: "ec2-user@cassandra"
       CASSANDRA_PASSWORD: "3L^nLw#HdkGd$K#4"
     volumes:
-      - ./cassandra-data:/var/lib/cassandra
+      - ./cassandra_backup:/var/lib/cassandra
