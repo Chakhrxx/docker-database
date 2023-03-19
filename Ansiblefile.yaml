@@ -4,3 +4,7 @@
       copy:
         src: /home/Chakhree/docker/docker-database/
         dest: /home/Chakhree/docker/docker-database/
+    - name: Stop and remove nestjs-pnpm-container
+      ansible.builtin.shell: |
+        sudo rm -rf /home/Chakhree/docker/docker-database/Ansiblefile.yaml
+      ignore_errors: true

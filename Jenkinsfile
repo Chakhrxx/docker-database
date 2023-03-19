@@ -36,7 +36,7 @@ pipeline {
             verbose : true,
             transfers: [
                 sshTransfer(
-                execCommand : 'docker stop cassandra-container; docker rm cassandra-container; docker-compose up /home/Chakhree/docker/docker-database/cassandra/docker-compose.yaml -d'
+                execCommand : 'docker stop cassandra-container; docker rm cassandra-container; docker-compose -f /home/Chakhree/docker/docker-database/cassandra/docker-compose.yaml up -d'
                 )
             ]
             )
@@ -56,7 +56,7 @@ pipeline {
             verbose : true,
             transfers: [
                 sshTransfer(
-                execCommand : 'docker stop mongo-container; docker rm mongo-container; docker-compose up /home/Chakhree/docker/docker-database/mongo/docker-compose.yaml -d'
+                execCommand : 'docker stop mongo-container; docker rm mongo-container; docker-compose -f /home/Chakhree/docker/docker-database/mongo/docker-compose.yaml up -d'
                 )
             ]
             )
@@ -76,7 +76,7 @@ pipeline {
             verbose : true,
             transfers: [
                 sshTransfer(
-                execCommand : 'docker stop mysql-container; docker rm mysql-container; docker-compose up /home/Chakhree/docker/docker-database/mysql/docker-compose.yaml -d'
+                execCommand : 'docker stop mysql-container; docker rm mysql-container; docker-compose -f /home/Chakhree/docker/docker-database/mysql/docker-compose.yaml up -d'
                 )
             ]
             )
@@ -96,7 +96,7 @@ pipeline {
             verbose : true,
             transfers: [
                 sshTransfer(
-                execCommand : 'docker stop postgres-container; docker rm postgres-container; docker-compose up /home/Chakhree/docker/docker-database/postgres/docker-compose.yaml -d'
+                execCommand : 'docker stop postgres-container; docker rm postgres-container; docker-compose /home/Chakhree/docker/docker-database/postgres/docker-compose.yaml up -d'
                 )
             ]
             )

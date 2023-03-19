@@ -1,13 +1,13 @@
 version: "3.9"
 services:
   cassandra:
-    image: cassandra:latest
+    image: cassandra
     container_name: cassandra-container
     restart: always
     ports:
       - "9042:9042"
     environment:
-      CASSANDRA_USER: your_cassandra_username
-      CASSANDRA_PASSWORD: your_cassandra_password
+      CASSANDRA_USER: "ec2-user@cassandra"
+      CASSANDRA_PASSWORD: "3L^nLw#HdkGd$K#4"
     volumes:
       - ./cassandra-data:/var/lib/cassandra
