@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql
+    container_name: mysql-container
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_backup:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: "docker"
+      MYSQL_USER: "ec2-user@mysql"
+      MYSQL_PASSWORD: "*hkPydFH+4phTF@j"
+      MYSQL_ROOT_PASSWORD: "root"
+# # ---------- optional ----------
+
+# phpmyadmin:
+#   image: phpmyadmin
+#   container_name: phpmyadmin-container
+#   restart: always
+#   ports:
+#     - 8080:80
+#   environment:
+#     PMA_HOST: mysql
+#     PMA_PORT: 3306
+

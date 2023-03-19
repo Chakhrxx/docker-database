@@ -1,20 +1,109 @@
 pipeline {
-    agent any
+  agent any
 
-    stages {
-        stage('Connect to remote host') {
-            steps {
-                sshagent(credentials: ['fa1b7358-d54a-4d15-a66f-124314b0be7e']) {
-                    sh 'chmod 400 react_jenkins_ansible.pem'
-                    sh 'ssh -i "react_jenkins_ansible.pem" ec2-user@ec2-43-207-48-197.ap-northeast-1.compute.amazonaws.com'
-                    sh 'sudo su -'
-                }
-            }
-        }
+  stages {
+
+    stage('SSH Tranfer and run Ansivle playbook') {
+      steps {
+        sshPublisher(
+        continueOnError: false, 
+        failOnError: true,
+        publishers: [
+            sshPublisherDesc(
+            configName: 'Ansible',
+            verbose : true,
+            transfers: [
+                sshTransfer(
+                sourceFiles: 'cassandra/, mongo/, mysql/, postgres/, Ansiblefile.yaml',
+                remoteDirectory: 'docker/docker-database',
+                execCommand : 'ansible-playbook -v -i /etc/ansible/hosts /home/Chakhree/docker/docker-database/Ansiblefile.yaml'
+                )
+            ]
+            )
+        ]
+        )
+      }
     }
+
+    stage('Build cassandra container') {
+      steps {
+        sshPublisher(
+        continueOnError: false, 
+        failOnError: true,
+        publishers: [
+            sshPublisherDesc(
+            configName: 'Docker',
+            verbose : true,
+            transfers: [
+                sshTransfer(
+                execCommand : 'docker stop cassandra-container; docker rm cassandra-container; docker-compose up /home/Chakhree/docker/docker-database/cassandra/docker-compose.yaml -d'
+                )
+            ]
+            )
+        ]
+        )
+      }
+    }
+
+    stage('Build mongo container') {
+      steps {
+        sshPublisher(
+        continueOnError: false, 
+        failOnError: true,
+        publishers: [
+            sshPublisherDesc(
+            configName: 'Docker',
+            verbose : true,
+            transfers: [
+                sshTransfer(
+                execCommand : 'docker stop mongo-container; docker rm mongo-container; docker-compose up /home/Chakhree/docker/docker-database/mongo/docker-compose.yaml -d'
+                )
+            ]
+            )
+        ]
+        )
+      }
+    }
+
+    stage('Build mysql container') {
+      steps {
+        sshPublisher(
+        continueOnError: false, 
+        failOnError: true,
+        publishers: [
+            sshPublisherDesc(
+            configName: 'Docker',
+            verbose : true,
+            transfers: [
+                sshTransfer(
+                execCommand : 'docker stop mysql-container; docker rm mysql-container; docker-compose up /home/Chakhree/docker/docker-database/mysql/docker-compose.yaml -d'
+                )
+            ]
+            )
+        ]
+        )
+      }
+    }
+
+    stage('Build postgres container') {
+      steps {
+        sshPublisher(
+        continueOnError: false, 
+        failOnError: true,
+        publishers: [
+            sshPublisherDesc(
+            configName: 'Docker',
+            verbose : true,
+            transfers: [
+                sshTransfer(
+                execCommand : 'docker stop postgres-container; docker rm postgres-container; docker-compose up /home/Chakhree/docker/docker-database/postgres/docker-compose.yaml -d'
+                )
+            ]
+            )
+        ]
+        )
+      }
+    }
+
+  }
 }
-
-
-
-
-

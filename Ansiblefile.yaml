@@ -1,0 +1,6 @@
+- hosts: Docker
+  tasks:
+    - name: Copy docker-database from ansibleHost to dockerHost
+      copy:
+        src: /home/Chakhree/docker/docker-database/
+        dest: /home/Chakhree/docker/docker-database/
