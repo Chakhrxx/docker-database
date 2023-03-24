@@ -10,8 +10,6 @@
       ignore_errors: true
     - name: Stop and remove containers
       ansible.builtin.shell: |
-        docker stop cassandra-container 
-        docker rm cassandra-container
         docker stop mongo-container 
         docker rm mongo-container
         docker stop mysql-container 

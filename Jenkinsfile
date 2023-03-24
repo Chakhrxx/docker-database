@@ -14,7 +14,7 @@ pipeline {
             verbose : true,
             transfers: [
                 sshTransfer(
-                sourceFiles: 'cassandra/, mongo/, mysql/, postgres/, Ansiblefile.yaml',
+                sourceFiles: 'mongo/, mysql/, postgres/, Ansiblefile.yaml',
                 remoteDirectory: 'docker/docker-database',
                 execCommand : 'ansible-playbook -v -i /etc/ansible/hosts /home/Chakhree/docker/docker-database/Ansiblefile.yaml'
                 )
